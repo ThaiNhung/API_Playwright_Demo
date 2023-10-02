@@ -1,4 +1,4 @@
-package com.qa.api.tests;
+package GET;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,8 +24,8 @@ public class GETAPICall {
     @BeforeTest
     public void setUp(){
         plWright =  Playwright.create();
-         request = plWright.request();
-         context = request.newContext();
+        request = plWright.request();
+        context = request.newContext();
 
     }
     @Test
@@ -44,14 +44,14 @@ public class GETAPICall {
      Assert.assertEquals(StatusCode, 200, "The Actual is: "+StatusCode+ " but expected is 200");
      System.out.println(statusText);
 
-     System.out.println("verify api response under boolean type");
+     System.out.println("Verify api response under boolean type");
      Assert.assertEquals(apiResponse.ok(), true);
 
      System.out.println(apiResponse.text());
      //Assert.assertEquals(apiResponse.text(), true);
 
      System.out.println("Print API Json body");
-     //Because body show under byte array (byte[]) -> we cannot use toString or length, So we need to get the help of JACKSON API is the third party
+     //Because body show type byte array (byte[]) -> we cannot use toString or length, So we need to get the help of JACKSON API is the third party
      System.out.println(apiResponse.body());
 
  }
@@ -68,23 +68,22 @@ public class GETAPICall {
       System.out.println("Status code is: "+ StatusCode);
       Assert.assertEquals(StatusCode, 200, "The Actual is: "+StatusCode+ " but expected is 200");
 
-      System.out.println("verify api response successful or not with status range 200-299");
+      System.out.println("Verify api response successful or not with status range 200-299");
       Assert.assertEquals(apiResponse.ok(), true, "The expected is true but actual is "+apiResponse.ok());
 
       System.out.println("Returns the text representation of response body.");
       Assert.assertEquals(apiResponse.text(), "OK");
 
      System.out.println("Print API Json body");
-      //Because body show under byte array (byte[]) -> we cannot use toString or length, So we need to get the help of JACKSON API is the third party
-      System.out.println(apiResponse.body());
+     System.out.println(apiResponse.body());
 
-      ObjectMapper objectMapper= new ObjectMapper();
-      //Use the ObjectMapper.read try to read the byte array data type
+     ObjectMapper objectMapper= new ObjectMapper();
+     //Use the ObjectMapper.read try to read the byte array data type
       JsonNode JsonResponse = objectMapper.readTree(apiResponse.body());
-      //JsonResponse.toPrettyString();
       System.out.println( JsonResponse.toPrettyString());
       System.out.println("Print api URL "+ apiResponse.url());
       System.out.println(apiResponse.headers());
+
       Map<String, String> headersMap = apiResponse.headers();
       System.out.println(headersMap.get("content-type"));
       Assert.assertEquals(headersMap.get("content-type"), "application/json; charset=utf-8");
