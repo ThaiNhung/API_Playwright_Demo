@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.Map;
 
-public class APIResponseHeader {
+public class apiResponseHeader {
     Playwright plWright;
     APIRequest request;
     APIRequestContext context;

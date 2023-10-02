@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Map;
 
-public class GETAPICall {
+public class apiGetCall {
     Playwright plWright;
     APIRequest request;
     APIRequestContext context;

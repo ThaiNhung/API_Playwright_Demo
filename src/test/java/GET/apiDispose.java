@@ -1,4 +1,4 @@
-package com.qa.api.tests;
+package GET;
 
 import com.microsoft.playwright.*;
 import org.testng.Assert;
