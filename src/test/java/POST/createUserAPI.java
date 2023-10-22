@@ -2,11 +2,7 @@ package POST;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.microsoft.playwright.APIRequest;
-import com.microsoft.playwright.APIRequestContext;
-import com.microsoft.playwright.APIResponse;
-import com.microsoft.playwright.Playwright;
-import com.microsoft.playwright.options.HttpHeader;
+import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.RequestOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -15,15 +11,14 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class createUserAPI {
     Playwright plWright;
     APIRequest request;
     APIRequestContext context;
-
+    static String emailId;
     @BeforeTest
     public void setUp(){
         plWright =  Playwright.create();
@@ -31,14 +26,18 @@ public class createUserAPI {
         context = request.newContext();
 
     }
+    public static String getRandomEmail(){
+        emailId = "Demo"+ System.currentTimeMillis() + "@gmail.com";
+        return emailId;
+    }
     @Test
     public  void createUser() throws IOException {
         Map<String, Object> data = new HashMap<String, Object>();
-        data.put("email", "test4@yopmail.com");
+       // data.put("email", "test4@yopmail.com");
+        data.put("email", getRandomEmail());
         data.put("name", "nhungAuto");
         data.put("gender", "Female");
-        data.put("status", "pending");
-
+        data.put("status", "active");
 
         //using the post have requestOptions because we need to add authentication, body, headers as well
     APIResponse responsePost = context.post("https://gorest.co.in/public/v2/users",
@@ -54,6 +53,9 @@ public class createUserAPI {
     ObjectMapper objectMapper= new ObjectMapper();
     JsonNode JsonResponse = objectMapper.readTree(responsePost.body());
     System.out.println( JsonResponse.toPrettyString());
+
+    Assert.assertTrue(responsePost.text().contains(emailId));
+    System.out.println("This is emailId: "+emailId);
 
     }
     @AfterTest
