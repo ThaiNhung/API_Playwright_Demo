@@ -10,13 +10,15 @@ npm i -D @playwright
 
 ### Structure
 A: AppConstants - This file contain all constants of the project
+B: data - This file is where the usage data for the POST API
 B: Base/ baseTest - This file contain all common method using for project
-C: GET/ POST - this folder to contain test case (each of child class corresspond to each of API request)
++ including setup environment and common method (like verifyStatusCode,..)
+C: get/ post/ put/ delete - this folder to contain test case (each of child class corresspond to each of API method request)
 
 
 ### IN the Intellij
 - Open the Intellij use TestNG to run Test Case
-- Open GET/ POST folder, run API request by click on button Run Test
+- Open get/ post/ put/ delete folder, run API request by click on button Run Test
 + To debug, Set breakpoints in the code then Select the debug options to debug code
 
 
