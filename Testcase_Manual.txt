@@ -1,0 +1,7 @@
+Test case: Get all information of API "https://api.genderize.io/?name=luc"
+1: Run GET API "https://api.genderize.io/?name=luc"
+2: Verify response information
++ Verify status code and text (200 OK)
++ Verify body response with JSon file
++ Verify header length size and information
++ Verify some information of the header 
